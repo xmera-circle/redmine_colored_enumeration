@@ -18,7 +18,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
-class AddColorColumnToCustomFieldEnumeration < ActiveRecord::Migration[5.2]
+class AddColorToCustomFieldEnumerations < ActiveRecord::Migration[5.2]
   def change
     add_column :custom_field_enumerations, :color, :text
   end

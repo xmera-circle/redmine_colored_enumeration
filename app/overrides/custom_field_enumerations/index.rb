@@ -18,8 +18,11 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
-# Extensions
-require 'colored_enumeration/extensions/custom_field_enumeration_patch'
-
-# Overrides
-require 'colored_enumeration/overrides/custom_field_enumerations_controller_patch'
+Deface::Override.new(
+  virtual_path: 'custom_field_enumerations/index',
+  name: 'add-color-field',
+  insert_after: '.icon-only.icon-sort-handle.sort-handle',
+  partial: 'custom_field_enumerations/color_field',
+  original: '',
+  namespaced: true
+)

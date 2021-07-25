@@ -18,5 +18,34 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
-# Extensions
-require 'colored_enumeration/extensions/custom_field_enumeration_patch'
+require File.expand_path('../test_helper', __dir__)
+
+module ColoredEnumeration
+  class CustomFieldEnumerationTest < ActiveSupport::TestCase
+
+    def setup
+      @field = CustomFieldEnumeration.new(default_args)
+    end
+
+    test 'should respond to color' do
+      assert @field.respond_to? :color
+    end
+
+    test 'color field length should be restricted' do
+      field = CustomFieldEnumeration.new(args_with_color('#12345678'))
+      assert_not field.valid?
+    end
+
+    private
+
+    def args_with_color(color)
+      default_args.merge(color: color)
+    end
+
+    def default_args
+      { name: 'Enum Field', 
+        position: 1, 
+        custom_field_id: 9999 }
+    end
+  end
+end

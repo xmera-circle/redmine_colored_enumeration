@@ -18,5 +18,20 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
-# Extensions
-require 'colored_enumeration/extensions/custom_field_enumeration_patch'
+module ColoredEnumeration
+  module Extensions
+    module CustomFieldEnumerationPatch
+      def self.included(base)
+        base.class_eval do
+          base.validates_length_of :color, maximum: 7
+        end
+      end
+    end
+  end
+end
+
+Rails.configuration.to_prepare do
+  patch = ColoredEnumeration::Extensions::CustomFieldEnumerationPatch
+  klass = CustomFieldEnumeration
+  klass.include patch unless klass.included_modules.include?(patch)
+end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Redmine plugin called Redmine Colored Enumeration.
+# This file is part of the Plugin Redmine Colored Enumeration.
 #
 # Copyright (C) 2021 Liane Hampe <liaham@xmera.de>, xmera.
 #

@@ -18,5 +18,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
-# Extensions
-require 'colored_enumeration/extensions/custom_field_enumeration_patch'
+# Suppresses ruby gems warnings when running tests
+$VERBOSE = nil
+
+# Load the Redmine helper
+require File.expand_path('../../../test/test_helper', __dir__)

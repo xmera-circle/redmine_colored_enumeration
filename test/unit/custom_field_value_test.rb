@@ -21,21 +21,29 @@
 require File.expand_path('../test_helper', __dir__)
 
 module ColoredEnumeration
-  class CustomFieldEnumerationViewTest < ActionDispatch::IntegrationTest
-    include ColoredEnumeration::AuthenticateUser
+  class CustomFieldValueTest < ActiveSupport::TestCase
     include ColoredEnumeration::Enumerations
 
-    fixtures :users
+    fixtures :issues, :custom_fields, :custom_values
 
     def setup
+      @issue = Issue.find(3)
       @custom_field = create_custom_field
+      @values = @custom_field.enumerations.map(&:id)
     end
 
-    test 'index view should have color fields' do
-      log_user('admin', 'admin')
-      get custom_field_enumerations_path(@custom_field)
-      assert_select '.color-tag', 3
-      assert_select 'input[value=?]', yellow
+    test 'should give the color of an enumeration formatted custom field' do
+      cfv = CustomFieldValue.new(custom_field: @custom_field,
+                                 customized: @issue,
+                                 value: @values[0])
+      assert yellow, cfv.cast_color(cfv.value)
+    end
+
+    test 'should give nil color for formats other than enumeration' do
+      cfv = CustomFieldValue.new(custom_field: CustomField.find(1),
+                                 customized: @issue,
+                                 value: 'MySQL')
+      assert_equal '', cfv.cast_color(cfv.value)
     end
   end
 end

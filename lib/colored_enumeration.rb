@@ -20,6 +20,11 @@
 
 # Extensions
 require 'colored_enumeration/extensions/custom_field_enumeration_patch'
+require 'colored_enumeration/extensions/enumeration_format_patch'
+require 'colored_enumeration/extensions/issue_custom_field_patch'
+require 'colored_enumeration/extensions/custom_field_value_patch'
+require 'colored_enumeration/extensions/base_format_patch'
 
 # Overrides
 require 'colored_enumeration/overrides/custom_field_enumerations_controller_patch'
+require 'colored_enumeration/overrides/issues_helper_patch'

@@ -18,11 +18,24 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
-# Suppresses ruby gems warnings when running tests
-$VERBOSE = nil
+module ColoredEnumeration
+  module Extensions
+    module BaseFormatPatch
+      def self.included(base)
+        base.include(InstanceMethods)
+      end
 
-# Load the Redmine helper
-require File.expand_path('../../../test/test_helper', __dir__)
+      module InstanceMethods
+        def cast_color(*)
+          ''
+        end
+      end
+    end
+  end
+end
 
-require_relative 'authenticate_user'
-require_relative 'enumerations'
+Rails.configuration.to_prepare do
+  patch = ColoredEnumeration::Extensions::BaseFormatPatch
+  klass = Redmine::FieldFormat::Base
+  klass.include patch unless klass.included_modules.include?(patch)
+end

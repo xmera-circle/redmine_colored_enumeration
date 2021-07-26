@@ -22,6 +22,7 @@ require File.expand_path('../test_helper', __dir__)
 
 module ColoredEnumeration
   class CustomFieldEnumerationTest < ActiveSupport::TestCase
+    include Redmine::I18n
 
     def setup
       @field = CustomFieldEnumeration.new(default_args)
@@ -31,9 +32,22 @@ module ColoredEnumeration
       assert @field.respond_to? :color
     end
 
+    test 'correct hex color should be valid' do
+      field = CustomFieldEnumeration.new(args_with_color('#9e1030'))
+      assert field.valid?
+    end
+
     test 'color field length should be restricted' do
-      field = CustomFieldEnumeration.new(args_with_color('#12345678'))
+      field = CustomFieldEnumeration.new(args_with_color('#9ee1030'))
       assert_not field.valid?
+      assert_equal 2, field.errors.count
+    end
+
+    test 'should reject usual string with correct length' do
+      field = CustomFieldEnumeration.new(args_with_color('9e1030'))
+      assert_not field.valid?
+      assert field.errors.present?
+      assert_equal 1, field.errors.count
     end
 
     private
@@ -43,8 +57,8 @@ module ColoredEnumeration
     end
 
     def default_args
-      { name: 'Enum Field', 
-        position: 1, 
+      { name: 'Enum Field',
+        position: 1,
         custom_field_id: 9999 }
     end
   end

@@ -20,33 +20,42 @@
 
 module ColoredEnumeration
   module Overrides
-    module CustomFieldEnumerationsControllerPatch
+    module IssuesHelperPatch
       def self.prepended(base)
         base.prepend(InstanceMethods)
       end
 
       module InstanceMethods
-        private
         ##
-        # Add color attribute.
+        # Add javascript data attribute with color information.
         #
-        # @override CustomFieldEnumerationsController#enumeration_params
+        # @override IssuesHelper#render_half_width_custom_fields_rows
         #
-        def enumeration_params
-          params.require(:custom_field_enumeration).permit(*permitted_attrs)
+        def render_half_width_custom_fields_rows(issue)
+          values = issue.visible_custom_field_values.reject { |value| value.custom_field.full_width_layout? }
+          return if values.empty?
+
+          half = (values.size / 2.0).ceil
+          issue_fields_rows do |rows|
+            values.each_with_index do |value, i|
+              m = (i < half ? :left : :right)
+              rows.send(m,
+                        custom_field_name_tag(value.custom_field),
+                        custom_field_value_tag(value),
+                        row_html_args(value))
+            end
+          end
         end
 
-        ##
-        # Add color attribute.
-        #
-        # @override CustomFieldEnumerationsController#update_each_params
-        #
-        def update_each_params
-          params.permit(:custom_field_enumerations => permitted_attrs).require(:custom_field_enumerations)
+        def row_html_args(value)
+          return { class: value.custom_field.css_classes } unless cast_color(value).present?
+
+          { class: value.custom_field.css_classes,
+            data: { color: value.cast_color(value.value) } }
         end
 
-        def permitted_attrs
-          %i[color name active position]
+        def cast_color(value)
+          value.cast_color(value.value)
         end
       end
     end
@@ -54,7 +63,7 @@ module ColoredEnumeration
 end
 
 Rails.configuration.to_prepare do
-  patch = ColoredEnumeration::Overrides::CustomFieldEnumerationsControllerPatch
-  klass = CustomFieldEnumerationsController
+  patch = ColoredEnumeration::Overrides::IssuesHelperPatch
+  klass = IssuesHelper
   klass.prepend patch unless klass.included_modules.include?(patch)
 end

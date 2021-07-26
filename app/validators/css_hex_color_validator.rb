@@ -18,11 +18,15 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
-# Suppresses ruby gems warnings when running tests
-$VERBOSE = nil
+##
+# Credits to https://coderwall.com/p/upx61q/css-hex-color-validation-in-rails
+#
+class CssHexColorValidator < ActiveModel::EachValidator
+  include Redmine::I18n
 
-# Load the Redmine helper
-require File.expand_path('../../../test/test_helper', __dir__)
+  def validate_each(object, attribute, value)
+    return true if value =~ /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/i
 
-require_relative 'authenticate_user'
-require_relative 'enumerations'
+    object.errors[attribute] << (options[:message] || l(:error_invalid_css_hex_color))
+  end
+end

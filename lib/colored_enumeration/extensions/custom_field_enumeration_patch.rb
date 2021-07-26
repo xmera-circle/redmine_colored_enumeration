@@ -24,6 +24,7 @@ module ColoredEnumeration
       def self.included(base)
         base.class_eval do
           base.validates_length_of :color, maximum: 7
+          base.validates :color, css_hex_color: true
         end
       end
     end

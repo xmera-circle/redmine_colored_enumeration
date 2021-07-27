@@ -1,0 +1,24 @@
+<%= color_mapping %>
+  <%= javascript_tag type: 'application/javascript' do  %>
+    $(document).ready(function(){
+      const color_mapping = <%= color_mapping.to_json.html_safe %>;
+      for (let map in color_mapping) {
+        cf = color_mapping[map];
+        id = Object.keys(cf);
+        color = Object.entries(cf)[0][1];
+        field = $('tr#issue-' + map).children('td.cf_' + id);
+        value = $('tr#issue-' + map).children('td.cf_' + id).text();
+        if (color) {
+          field.empty().html(
+            `<table class='enumeration-badge'>
+              <tbody>
+                <tr>
+                  <td style="background-color: `+ color + `;" title="` + value + ` "></td>
+                </tr>
+              </tbody>
+            </table>`
+          )
+        }
+      }
+    });
+  <% end %>

@@ -19,3 +19,7 @@ table.enumeration-badge td {
   padding: 0;
   border: 0 none;
 }
+
+th.enumeration {
+  text-align: left;
+}

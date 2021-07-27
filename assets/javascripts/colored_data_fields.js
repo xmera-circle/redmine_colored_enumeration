@@ -21,7 +21,7 @@ function coloredEnumerationBadge() {
         `<table class='enumeration-badge'>
           <tbody>
             <tr>
-              <td style="background-color: `+ color + `;" class="closed" title="` + value + ` "></td>
+              <td style="background-color: `+ color + `;" title="` + value + ` "></td>
             </tr>
           </tbody>
         </table>`

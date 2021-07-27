@@ -27,6 +27,7 @@ require 'colored_enumeration/extensions/base_format_patch'
 
 # Hooks
 require 'colored_enumeration/hooks/view_layouts_base_hook_listener'
+require 'colored_enumeration/hooks/view_issues_index_bottom_hook_listener'
 
 # Overrides
 require 'colored_enumeration/overrides/custom_field_enumerations_controller_patch'

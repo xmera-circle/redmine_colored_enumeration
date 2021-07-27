@@ -21,8 +21,7 @@
 require File.expand_path('../test_helper', __dir__)
 
 module ColoredEnumeration
-  class IssueViewTest < ActionDispatch::IntegrationTest
-    include ColoredEnumeration::AuthenticateUser
+  class IssueTest < ApplicationSystemTestCase
     include ColoredEnumeration::Enumerations
 
     fixtures %i[projects users email_addresses roles members member_roles
@@ -32,6 +31,7 @@ module ColoredEnumeration
                 workflows]
 
     def setup
+      super
       @issue = Issue.find(3)
 
       @custom_field = create_custom_field
@@ -43,14 +43,15 @@ module ColoredEnumeration
                                 customized_type: Issue)
       @cf.save!
       @issue.save_custom_field_values
+      Capybara.current_session.reset!
+      log_user 'admin', 'admin'
     end
 
-    test 'should render custom field enumerations with data-color attr' do
-      log_user('admin', 'admin')
-      get issue_path(@issue)
-      assert_select 'div.subject div h3', @issue.subject
-      assert_select "[data-color='']", 0
-      assert_select "[data-color='#{green}']", 1
+    test 'should render custom field enumerations with background color' do
+      visit issue_path(@issue)
+      expected_color = 'rgba(0, 128, 0, 1)'
+      current_color = page.find(".enumeration_cf.cf_#{@custom_field.id} .value").style('background-color')['background-color']
+      assert_equal expected_color, current_color
     end
   end
 end

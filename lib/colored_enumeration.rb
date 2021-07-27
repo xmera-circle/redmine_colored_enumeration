@@ -25,6 +25,9 @@ require 'colored_enumeration/extensions/issue_custom_field_patch'
 require 'colored_enumeration/extensions/custom_field_value_patch'
 require 'colored_enumeration/extensions/base_format_patch'
 
+# Hooks
+require 'colored_enumeration/hooks/view_layouts_base_hook_listener'
+
 # Overrides
 require 'colored_enumeration/overrides/custom_field_enumerations_controller_patch'
 require 'colored_enumeration/overrides/issues_helper_patch'

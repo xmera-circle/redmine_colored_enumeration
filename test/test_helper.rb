@@ -23,6 +23,7 @@ $VERBOSE = nil
 
 # Load the Redmine helper
 require File.expand_path('../../../test/test_helper', __dir__)
+require File.expand_path('../../../test/application_system_test_case', __dir__)
 
 require_relative 'authenticate_user'
 require_relative 'enumerations'

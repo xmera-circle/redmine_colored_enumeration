@@ -1,0 +1,21 @@
+table.enumeration-badge {
+  width: 80px;
+  margin-top: 3px;
+  margin-right: 5px;
+  float: left;
+  empty-cells: show;
+  border: 0 none;
+}
+
+table.enumeration-badge td:first-child {
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+table.enumeration-badge td {
+  height: 16px;
+  padding: 0;
+  border: 0 none;
+}

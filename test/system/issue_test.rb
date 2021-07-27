@@ -48,9 +48,17 @@ module ColoredEnumeration
     end
 
     test 'should render custom field enumerations with background color' do
+      skip
       visit issue_path(@issue)
       expected_color = 'rgba(0, 128, 0, 1)'
       current_color = page.find(".enumeration_cf.cf_#{@custom_field.id} .value").style('background-color')['background-color']
+      assert_equal expected_color, current_color
+    end
+
+    test 'should render custom field enumeration color badge' do
+      visit issue_path(@issue)
+      expected_color = 'rgba(0, 128, 0, 1)'
+      current_color = page.find('.enumeration-badge td').style('background-color')['background-color']
       assert_equal expected_color, current_color
     end
   end

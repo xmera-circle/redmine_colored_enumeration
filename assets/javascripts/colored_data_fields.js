@@ -11,4 +11,23 @@ function coloredEnumerationAddBackgroundColor() {
     }
   });
 }
-$(document).ready(coloredEnumerationAddBackgroundColor);
+
+function coloredEnumerationBadge() {
+  $('div.enumeration_cf').each(function() {
+    var color = $(this).data('color');
+    var value = $(this).children('.value').text();
+    if (color) {
+      $(this).children('.value').empty().html(
+        `<table class='enumeration-badge'>
+          <tbody>
+            <tr>
+              <td style="background-color: `+ color + `;" class="closed" title="` + value + ` "></td>
+            </tr>
+          </tbody>
+        </table>`
+      )
+    }
+  });
+}
+
+$(document).ready(coloredEnumerationBadge);

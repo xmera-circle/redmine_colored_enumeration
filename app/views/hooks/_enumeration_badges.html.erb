@@ -1,24 +1,25 @@
-<%= color_mapping %>
   <%= javascript_tag type: 'application/javascript' do  %>
     $(document).ready(function(){
-      const color_mapping = <%= color_mapping.to_json.html_safe %>;
-      for (let map in color_mapping) {
-        cf = color_mapping[map];
-        id = Object.keys(cf);
-        color = Object.entries(cf)[0][1];
-        field = $('tr#issue-' + map).children('td.cf_' + id);
-        value = $('tr#issue-' + map).children('td.cf_' + id).text();
-        if (color) {
-          field.empty().html(
-            `<table class='enumeration-badge'>
-              <tbody>
-                <tr>
-                  <td style="background-color: `+ color + `;" title="` + value + ` "></td>
-                </tr>
-              </tbody>
-            </table>`
-          )
-        }
-      }
+      const issue_mapping = <%= issue_mapping.to_json.html_safe %>;
+  
+      Object.keys(issue_mapping).forEach((issue_id) => {
+          issue = $('tr#issue-' + issue_id);
+          Object.keys(issue_mapping[issue_id]).forEach((cf_id) => {
+            field = issue.children('td.cf_' + cf_id);
+            value = field.text();
+            color = issue_mapping[issue_id][cf_id];
+            if (color) {
+              field.empty().html(
+                `<table class='enumeration-badge'>
+                  <tbody>
+                    <tr>
+                      <td style="background-color: `+ color + `;" title="` + value + ` "></td>
+                    </tr>
+                  </tbody>
+                </table>`
+              )
+            }
+          });
+      });
     });
   <% end %>

@@ -55,10 +55,23 @@ module ColoredEnumeration
       assert_equal expected_color, current_color
     end
 
-    test 'should render custom field enumeration color badge' do
+    test 'should render custom field enumeration color badge for single issue' do
       visit issue_path(@issue)
       expected_color = 'rgba(0, 128, 0, 1)'
       current_color = page.find('.enumeration-badge td').style('background-color')['background-color']
+      assert_equal expected_color, current_color
+    end
+
+    test 'should render custom field enumeration color badge for issue list' do
+      visit issues_path
+      within('fieldset#options') do
+        page.find('legend').click
+        select @custom_field.name, from: 'Available Columns'
+        page.find('input.move-right').click
+      end
+      page.find('p.buttons a.icon.icon-checked').click
+      expected_color = 'rgba(0, 128, 0, 1)'
+      current_color = page.find('table.enumeration-badge td').style('background-color')['background-color']
       assert_equal expected_color, current_color
     end
   end

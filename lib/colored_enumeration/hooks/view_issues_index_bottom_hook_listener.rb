@@ -36,15 +36,15 @@ module ColoredEnumeration
         ids = custom_field_ids(columns)
         cfv = custom_field_values(issues, ids)
         ecfv = enumeration_custom_fields(cfv)
-        color_mapping = color_map(ecfv)
-        render_with_javascript(color_mapping, controller) if color_mapping
+        issue_mapping = issue_map(ecfv)
+        render_with_javascript(issue_mapping, controller) if issue_mapping
       end
 
-      def render_with_javascript(color_mapping, controller)
+      def render_with_javascript(issue_mapping, controller)
         controller.send(
           :render_to_string,
           { partial: 'hooks/enumeration_badges',
-            locals: { color_mapping: color_mapping } }
+            locals: { issue_mapping: issue_mapping } }
         ).html_safe
       end
 
@@ -78,14 +78,17 @@ module ColoredEnumeration
         cfv.select { |field| field.custom_field.field_format == 'enumeration' }
       end
 
-      def color_map(ecfv)
+      def issue_map(ecfv)
         return if ecfv.blank?
 
         group = ecfv.group_by { |cfv| cfv.customized.id }
         group.keys.each_with_object({}) do |id, hash|
-          cfv = group[id]&.first
-          color = assign_color(cfv)
-          hash[id] = { cfv.custom_field_id => color }
+          collect = {}
+          group[id].each do |cfv|
+            color = assign_color(cfv)
+            collect.merge!(cfv.custom_field_id => color)
+          end
+          hash[id] = collect
         end
       end
 

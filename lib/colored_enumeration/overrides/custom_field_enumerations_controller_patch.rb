@@ -27,6 +27,7 @@ module ColoredEnumeration
 
       module InstanceMethods
         private
+
         ##
         # Add color attribute.
         #
@@ -42,7 +43,7 @@ module ColoredEnumeration
         # @override CustomFieldEnumerationsController#update_each_params
         #
         def update_each_params
-          params.permit(:custom_field_enumerations => permitted_attrs).require(:custom_field_enumerations)
+          params.permit(custom_field_enumerations: permitted_attrs).require(:custom_field_enumerations)
         end
 
         def permitted_attrs

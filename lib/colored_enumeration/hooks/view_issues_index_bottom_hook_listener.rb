@@ -23,10 +23,10 @@ module ColoredEnumeration
     include Redmine::Hook
 
     class ViewIssuesIndexBottomHookListener < Redmine::Hook::ViewListener
-
       def view_issues_index_bottom(context = {})
         controller = context[:controller]
         return unless /Issues/.match?(controller.class.name.to_s)
+
         query = context[:query] || []
         issues = context[:issues] || []
 

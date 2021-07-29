@@ -25,7 +25,7 @@ class CssHexColorValidator < ActiveModel::EachValidator
   include Redmine::I18n
 
   def validate_each(object, attribute, value)
-    return true if value =~ /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/i
+    return true if value.nil? || value =~ /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/i
 
     object.errors[attribute] << (options[:message] || l(:error_invalid_css_hex_color))
   end

@@ -19,9 +19,16 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 module ColoredEnumeration
+  ##
+  # Provide hook listener
+  #
   module Hooks
     include Redmine::Hook
 
+    ##
+    # Use the hook listener in order to add javascript to issues index page
+    # coloring the combi matrix entries with their pre-defined colors.
+    #
     class ViewIssuesIndexBottomHookListener < Redmine::Hook::ViewListener
       def view_issues_index_bottom(context = {})
         controller = context[:controller]
@@ -32,20 +39,27 @@ module ColoredEnumeration
 
         return if issues.blank? || query.blank?
 
-        columns = custom_field_columns(query)
-        ids = custom_field_ids(columns)
-        cfv = custom_field_values(issues, ids)
-        ecfv = enumeration_custom_fields(cfv)
-        issue_mapping = issue_map(ecfv)
-        render_with_javascript(issue_mapping, controller) if issue_mapping
+        render_with_javascript(issue_mapping(issues, query), controller)
       end
 
+      private
+
       def render_with_javascript(issue_mapping, controller)
+        return unless issue_mapping
+
         controller.send(
           :render_to_string,
           { partial: 'hooks/enumeration_badges',
             locals: { issue_mapping: issue_mapping } }
         ).html_safe
+      end
+
+      def issue_mapping(issues, query)
+        columns = custom_field_columns(query)
+        ids = custom_field_ids(columns)
+        cfv = custom_field_values(issues, ids)
+        ecfv = enumeration_custom_fields(cfv)
+        issue_map(ecfv)
       end
 
       def custom_field_columns(query)
@@ -75,7 +89,7 @@ module ColoredEnumeration
       def enumeration_custom_fields(cfv)
         return if cfv.blank?
 
-        cfv.select { |field| field.custom_field.field_format == 'enumeration' }
+        cfv.select { |field| field.custom_field.field_format == 'combi_matrix' }
       end
 
       def issue_map(ecfv)

@@ -33,32 +33,6 @@ module ColoredEnumeration
         def value_object(custom_field, value, customized)
           cast_value(custom_field, value, customized)
         end
-        # def possible_values_options(custom_field, object = nil)
-        #   possible_values_records(custom_field, object).map do |u|
-        #     [u.name, u.id.to_s, class: 'field-bg-color', data: { color: u.color }]
-        #   end
-        # end
-
-        # def possible_custom_value_options(custom_value)
-        #   options = possible_values_options(custom_value.custom_field, custom_value.customized)
-        #   byebug
-        #   missing = [custom_value.value_was].flatten.reject(&:blank?) - options.map(&:last)
-        #   if missing.any?
-        #     options += target_class.where(:id => missing.map(&:to_i)).map {|o| [o.to_s, o.id.to_s]}
-        #   end
-        #   options
-        # end
-
-        # def validate_custom_value(custom_value)
-        #   values = Array.wrap(custom_value.value).reject {|value| value.to_s == ''}
-        #   byebug
-        #   invalid_values = values - possible_custom_value_options(custom_value).map(&:last)
-        #   if invalid_values.any?
-        #     [::I18n.t('activerecord.errors.messages.inclusion')]
-        #   else
-        #     []
-        #   end
-        # end
       end
     end
   end

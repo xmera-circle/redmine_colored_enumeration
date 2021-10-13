@@ -23,6 +23,7 @@ Deface::Override.new(
   name: 'add-color-field',
   insert_after: '.icon-only.icon-sort-handle.sort-handle',
   partial: 'custom_field_enumerations/color_field',
-  original: '',
+  original: '4c39884753fd9da20e3acdd1a493eaa14c194d05',
+  sequence: 10,
   namespaced: true
 )

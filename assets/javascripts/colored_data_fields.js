@@ -2,7 +2,7 @@
    Copyright (C) 2021  Liane Hampe, xmera */
 
 function coloredEnumerationAddBackgroundColor() {
-  $('div.enumeration_cf').each(function(){
+  $('div.enumeration_cf, div.combi_matrix_cf').each(function(){
     var color = $(this).data('color');
     if (color) {
       $(this).children('.value').css('background-color', color);
@@ -13,7 +13,7 @@ function coloredEnumerationAddBackgroundColor() {
 }
 
 function coloredEnumerationBadge() {
-  $('div.enumeration_cf').each(function() {
+  $('div.enumeration_cf, div.combi_matrix_cf').each(function() {
     var color = $(this).data('color');
     var value = $(this).children('.value').text();
     if (color) {

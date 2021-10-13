@@ -1,5 +1,6 @@
   <%= javascript_tag type: 'application/javascript' do  %>
     $(document).ready(function(){
+
       const issue_mapping = <%= issue_mapping.to_json.html_safe %>;
   
       Object.keys(issue_mapping).forEach((issue_id) => {

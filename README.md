@@ -13,11 +13,11 @@ More information and screenshots can be found at
 
 You need a running Redmine instance in order to install the plugin. If you need help with the installation, please refer to [Redmine.org](https://redmine.org).
 
-Instructions for the installation of this plugin can be found in the [official documentation](https://circle.xmera.de/projects/redmine-colored-enumeration/wiki/Documentation).
+Instructions for the installation of this plugin can be found in the [official documentation](https://circle.xmera.de/projects/redmine-colored-enumeration/wiki).
 
 ## Changelog
 
-All notable changes to this plugin will be reported in the [changelog](https://circle.xmera.de/projects/redmine-colored-enumeration/repository/redmine_colored_enumeration_/entry/CHANGELOG.md) at xmera Circle.
+All notable changes to this plugin will be reported in the [changelog](https://circle.xmera.de/projects/redmine-colored-enumeration/repository/redmine_colored_enumeration/entry/CHANGELOG.md) at xmera Circle.
 
 ## Licence
 

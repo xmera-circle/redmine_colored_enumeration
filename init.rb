@@ -24,7 +24,7 @@ Redmine::Plugin.register :redmine_colored_enumeration do
   name 'Colored Enumeration'
   author 'Liane Hampe'
   description 'Background color for custom field enumeration values'
-  version '0.1.0'
+  version '0.1.1'
   url 'https://circle.xmera.de/projects/redmine-colored-enumeration'
   author_url 'http://xmera.de'
 

@@ -1,13 +1,20 @@
 # Redmine Colored Enumeration
 
+Add color badges to issue custom field enumerations 
+
 ![Redmine Plugin Version](https://img.shields.io/badge/Redmine_Plugin-v0.1.1-red) ![Redmine Version](https://img.shields.io/badge/Redmine-v4.x.x-blue) ![Language Support](https://img.shields.io/badge/Languages-en,_de-green) ![Version Stage](https://img.shields.io/badge/Stage-release-important)
 
 Redmine Colored Enumeration is a plugin which lets the administrator define background colors for custom field enumerations.
 
 ---
 
-More information and screenshots can be found at
-[xmera Circle - the  community website of xmera](https://circle.xmera.de).
+## Context Information
+
+This plugin is part of a plugin selection aiming to provide the information security management system solution xmera Omnia.
+
+All plugins in the selection are compatible with [Redmine 4](https://redmine.org).
+
+More information about xmera Omnia can be found at [xmera](https://xmera.de).
 
 ## Installation
 

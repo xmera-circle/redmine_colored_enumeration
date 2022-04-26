@@ -36,7 +36,7 @@ module ColoredEnumeration
       cfv = CustomFieldValue.new(custom_field: @custom_field,
                                  customized: @issue,
                                  value: @values[0])
-      assert yellow, cfv.cast_color(cfv.value)
+      assert_equal yellow, cfv.cast_color(cfv.value)
     end
 
     test 'should give nil color for formats other than enumeration' do
@@ -44,6 +44,17 @@ module ColoredEnumeration
                                  customized: @issue,
                                  value: 'MySQL')
       assert_equal '', cfv.cast_color(cfv.value)
+    end
+
+    test 'should give the first color entry for multiple value field' do
+      @custom_field.update(multiple: true)
+      @custom_field.save
+      @custom_field.reload
+      cfv = CustomFieldValue.new(custom_field: @custom_field,
+                                 customized: @issue,
+                                 value: [@values[0], @values[1]])
+
+      assert_equal yellow, cfv.cast_color(cfv.value)
     end
   end
 end

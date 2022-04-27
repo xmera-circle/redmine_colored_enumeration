@@ -20,6 +20,7 @@ table.enumeration-badge td {
   border: 0 none;
 }
 
-th.enumeration {
+th.enumeration,
+th.combi_matrix {
   text-align: left;
 }

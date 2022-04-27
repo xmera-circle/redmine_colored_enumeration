@@ -2,7 +2,7 @@
    Copyright (C) 2021  Liane Hampe, xmera */
 
 function coloredEnumerationAddBackgroundColor() {
-  $('div.enumeration_cf, div.combi_matrix_cf').each(function(){
+  $('div.enumeration_cf, div.combi_matrix_cf, td.enumeration').each(function(){
     var color = $(this).data('color');
     if (color) {
       $(this).children('.value').css('background-color', color);
@@ -13,11 +13,12 @@ function coloredEnumerationAddBackgroundColor() {
 }
 
 function coloredEnumerationBadge() {
-  $('div.enumeration_cf, div.combi_matrix_cf').each(function() {
+  $('div.enumeration_cf, div.combi_matrix_cf, td.enumeration').each(function() {
     var color = $(this).data('color');
-    var value = $(this).children('.value').text();
-    if (color) {
-      $(this).children('.value').empty().html(
+    var element = $(this).children('.value').length ? $(this).children('.value') : $(this);
+    var value = element.text();
+    if (color && value) {
+      element.empty().html(
         `<table class='enumeration-badge'>
           <tbody>
             <tr>

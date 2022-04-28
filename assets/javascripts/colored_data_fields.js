@@ -22,7 +22,7 @@ function coloredEnumerationBadge() {
         `<table class='enumeration-badge'>
           <tbody>
             <tr>
-              <td style="background-color: `+ color + `;" title="` + value + ` "></td>
+              <td class="tooltip" style="background-color: `+ color + `;" title="` + value + ` "></td>
             </tr>
           </tbody>
         </table>`

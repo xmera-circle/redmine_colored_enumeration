@@ -23,6 +23,7 @@ module ColoredEnumeration
     module EnumerationFormatPatch
       def self.included(base)
         base.include(InstanceMethods)
+        base.multiple_supported = false
       end
 
       module InstanceMethods

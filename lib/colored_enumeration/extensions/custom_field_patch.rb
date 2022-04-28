@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Redmine plugin called Redmine Colored Enumeration.
+# This file is part of the Plugin Redmine Colored Enumeration.
 #
 # Copyright (C) 2021 - 2022 Liane Hampe <liaham@xmera.de>, xmera.
 #
@@ -18,8 +18,24 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
-class AddColorToCustomFieldEnumerations < ActiveRecord::Migration[5.2]
-  def change
-    add_column :custom_field_enumerations, :color, :text
+module ColoredEnumeration
+  module Extensions
+    module CustomFieldPatch
+      def self.included(base)
+        base.include(InstanceMethods)
+      end
+
+      module InstanceMethods
+        def color_map
+          enumerations.pluck(:id, :color).to_h
+        end
+      end
+    end
   end
+end
+
+Rails.configuration.to_prepare do
+  patch = ColoredEnumeration::Extensions::CustomFieldPatch
+  klass = CustomField
+  klass.include patch unless klass.included_modules.include?(patch)
 end

@@ -1,0 +1,1 @@
+<%= content_tag('td', column_content(column, issue), column.respond_to?(:custom_field) ? column.html_attributes(issue) : { class: column.css_classes } ) %>

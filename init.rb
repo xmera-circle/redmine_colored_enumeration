@@ -2,7 +2,7 @@
 
 # This file is part of the Plugin Redmine Colored Enumeration.
 #
-# Copyright (C) 2021 Liane Hampe <liaham@xmera.de>, xmera.
+# Copyright (C) 2021 - 2022 Liane Hampe <liaham@xmera.de>, xmera.
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -24,9 +24,10 @@ Redmine::Plugin.register :redmine_colored_enumeration do
   name 'Colored Enumeration'
   author 'Liane Hampe'
   description 'Background color for custom field enumeration values'
-  version '0.1.1'
+  version '0.1.2'
   url 'https://circle.xmera.de/projects/redmine-colored-enumeration'
   author_url 'http://xmera.de'
 
   requires_redmine version_or_higher: '4.2.1'
+  requires_redmine_plugin :redmine_base_deface, version_or_higher: '1.6.2'
 end

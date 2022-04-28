@@ -2,7 +2,7 @@
 
 # This file is part of the Plugin Redmine Colored Enumeration.
 #
-# Copyright (C) 2021 Liane Hampe <liaham@xmera.de>, xmera.
+# Copyright (C) 2021 - 2022 Liane Hampe <liaham@xmera.de>, xmera.
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -63,7 +63,6 @@ module ColoredEnumeration
 
     test 'should render custom field enumeration color badge for issue list' do
       visit issues_path
-      skip 'Test does not create a query at all which is needed in view_issues_index_bottom_hook_listener.rb!'
       within('fieldset#options') do
         page.find('legend').click
         select @custom_field.name, from: 'Available Columns'

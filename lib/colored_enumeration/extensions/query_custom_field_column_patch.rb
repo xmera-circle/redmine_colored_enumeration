@@ -18,13 +18,38 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
+require File.expand_path 'app/models/query', Rails.root
+
 module ColoredEnumeration
   module Extensions
-    module CustomFieldEnumerationPatch
+    module QueryCustomFieldColumnPatch
       def self.included(base)
-        base.class_eval do
-          base.validates_length_of :color, maximum: 7
-          base.validates :color, css_hex_color: true
+        base.include(InstanceMethods)
+      end
+
+      module InstanceMethods
+        def color_map
+          @color_map ||= custom_field.color_map
+        end
+
+        ##
+        # Extends the css classes with a html data attribute holding the
+        # color code if any.
+        #
+        # In case there is no CustomFieldEnumeration the
+        # default css classes are returned.
+        #
+        # @overrides QueryCustomFieldColumn#css_classes
+        #
+        def html_attributes(issue)
+          return { class: css_classes } unless custom_field.field_format == 'enumeration'
+
+          val = value_object(issue)
+          color = color_map[val&.value.to_i]
+          return { class: css_classes } unless color
+
+          { class: css_classes,
+            data: { color: color } }
         end
       end
     end
@@ -32,7 +57,7 @@ module ColoredEnumeration
 end
 
 Rails.configuration.to_prepare do
-  patch = ColoredEnumeration::Extensions::CustomFieldEnumerationPatch
-  klass = CustomFieldEnumeration
+  patch = ColoredEnumeration::Extensions::QueryCustomFieldColumnPatch
+  klass = QueryCustomFieldColumn
   klass.include patch unless klass.included_modules.include?(patch)
 end

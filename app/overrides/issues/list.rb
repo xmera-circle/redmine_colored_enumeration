@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-# Redmine plugin called Redmine Colored Enumeration.
+# This file is part of the Plugin Redmine Colored Enumeration.
 #
-# Copyright (C) 2021 - 2022 Liane Hampe <liaham@xmera.de>, xmera.
+# Copyright (C) 2022 Liane Hampe <liaham@xmera.de>, xmera.
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -18,8 +18,12 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
-class AddColorToCustomFieldEnumerations < ActiveRecord::Migration[5.2]
-  def change
-    add_column :custom_field_enumerations, :color, :text
-  end
-end
+Deface::Override.new(
+  virtual_path: 'issues/_list',
+  name: 'change-custom-field-html-attributes',
+  replace: "erb[loud]:contains('content_tag')",
+  partial: 'issues/custom_field_html_attributes',
+  original: '',
+  sequence: 10,
+  namespaced: true
+)

@@ -2,7 +2,7 @@
 
 # This file is part of the Plugin Redmine Colored Enumeration.
 #
-# Copyright (C) 2021 Liane Hampe <liaham@xmera.de>, xmera.
+# Copyright (C) 2021 - 2022 Liane Hampe <liaham@xmera.de>, xmera.
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -20,10 +20,12 @@
 
 # Extensions
 require 'colored_enumeration/extensions/custom_field_enumeration_patch'
+require 'colored_enumeration/extensions/custom_field_patch'
 require 'colored_enumeration/extensions/enumeration_format_patch'
 require 'colored_enumeration/extensions/issue_custom_field_patch'
 require 'colored_enumeration/extensions/custom_field_value_patch'
 require 'colored_enumeration/extensions/base_format_patch'
+require 'colored_enumeration/extensions/query_custom_field_column_patch'
 
 # Hooks
 require 'colored_enumeration/hooks/view_layouts_base_hook_listener'

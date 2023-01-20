@@ -18,7 +18,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
-require 'colored_enumeration'
+require File.expand_path('lib/colored_enumeration', __dir__)
 
 Redmine::Plugin.register :redmine_colored_enumeration do
   name 'Colored Enumeration'
@@ -31,3 +31,5 @@ Redmine::Plugin.register :redmine_colored_enumeration do
   requires_redmine version_or_higher: '4.2.1'
   requires_redmine_plugin :redmine_base_deface, version_or_higher: '1.6.2'
 end
+
+RedmineColoredEnumeration.setup

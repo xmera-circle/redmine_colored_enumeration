@@ -33,9 +33,3 @@ module ColoredEnumeration
     end
   end
 end
-
-Rails.configuration.to_prepare do
-  patch = ColoredEnumeration::Extensions::IssueCustomFieldPatch
-  klass = IssueCustomField
-  klass.include patch unless klass.included_modules.include?(patch)
-end

@@ -53,9 +53,3 @@ module ColoredEnumeration
     end
   end
 end
-
-Rails.configuration.to_prepare do
-  patch = ColoredEnumeration::Overrides::CustomFieldEnumerationsControllerPatch
-  klass = CustomFieldEnumerationsController
-  klass.prepend patch unless klass.included_modules.include?(patch)
-end

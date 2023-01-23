@@ -1,5 +1,5 @@
 /* Redmine Colored Enumeration
-   Copyright (C) 2021  Liane Hampe, xmera */
+   Copyright (C) 2021-2023  Liane Hampe, xmera Solutions GmbH*/
 
 function coloredEnumerationAddBackgroundColor() {
   $('div.enumeration_cf, div.combi_matrix_cf, td.enumeration').each(function(){

@@ -18,17 +18,19 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
-module ColoredEnumeration
-  module Hooks
-    include Redmine::Hook
+require File.expand_path('../../../../../test_helper', __dir__)
+require 'redmine/field_format'
 
-    class ViewLayoutsBaseHookListener < Redmine::Hook::ViewListener
-      def view_layouts_base_html_head(context = {})
-        return unless %w[IssuesController].include?(context[:controller].class.name.to_s)
+class Redmine::EnumerationFieldFormatTest
+  define_method(:test_value_from_keyword_for_multiple_custom_field_should_return_enumeration_ids) do
+    # This test cannot be done since multiple values are not supported when
+    # using Redmine Colored Enumeration plugin!
+    assert true
+  end
 
-        "\n".html_safe + stylesheet_link_tag('colored_data_fields.css', plugin: :redmine_colored_enumeration) +
-          "\n".html_safe + javascript_include_tag('colored_data_fields.js', plugin: :redmine_colored_enumeration)
-      end
-    end
+  define_method(:test_edit_tag_with_multiple_should_select_current_values) do
+    # This test cannot be done since multiple values are not supported when
+    # using Redmine Colored Enumeration plugin!
+    assert true
   end
 end

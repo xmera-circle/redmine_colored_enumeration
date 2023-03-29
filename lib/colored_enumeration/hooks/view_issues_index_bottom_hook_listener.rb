@@ -32,7 +32,7 @@ module ColoredEnumeration
     class ViewIssuesIndexBottomHookListener < Redmine::Hook::ViewListener
       def view_issues_index_bottom(context = {})
         controller = context[:controller]
-        return unless /Issues/.match?(controller.class.name.to_s)
+        return unless %w[IssuesController].include?(controller.class.name.to_s)
 
         query = context[:query] || []
         issues = context[:issues] || []

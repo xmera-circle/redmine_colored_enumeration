@@ -2,7 +2,7 @@
 
 Add color badges to issue custom field enumerations 
 
-![Redmine Plugin Version](https://img.shields.io/badge/Redmine_Plugin-v0.1.3-red) ![Redmine Version](https://img.shields.io/badge/Redmine-v5.0.x-blue) ![Language Support](https://img.shields.io/badge/Languages-en,_de-green) ![Version Stage](https://img.shields.io/badge/Stage-release-important)
+![Redmine Plugin Version](https://img.shields.io/badge/Redmine_Plugin-v0.1.3-red) ![Redmine Version](https://img.shields.io/badge/Redmine-v5.0.x-blue) ![Language Support](https://img.shields.io/badge/Languages-en,_de-green) ![Version Stage](https://img.shields.io/badge/Stage-release-important) ![develop](https://github.com/xmera-circle/redmine_colored_enumeration/actions/workflows/5-0-stable.yml/badge.svg)
 
 Redmine Colored Enumeration is a plugin which lets the administrator define background colors for custom field enumerations.
 

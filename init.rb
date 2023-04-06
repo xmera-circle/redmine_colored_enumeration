@@ -30,7 +30,7 @@ Redmine::Plugin.register :redmine_colored_enumeration do
 
   requires_redmine version_or_higher: '4.2.1'
   requires_redmine_plugin :redmine_base_deface, version_or_higher: '1.6.2'
-  requires_redmine_plugin :advanced_plugin_helper, version_or_higher: '0.2.0'
+  requires_redmine_plugin :advanced_plugin_helper, version_or_higher: '0.4.0'
 end
 
 RedmineColoredEnumeration.setup

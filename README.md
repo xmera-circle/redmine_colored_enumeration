@@ -16,6 +16,14 @@ Navigate to the custom field section in admin area. Create a key/value list, sav
 
 For more examples and usage, please refer to the [official documentation](https://circle.xmera.de/projects/redmine-colored-enumeration/wiki).
 
+### Dependencies
+
+To run the plugin you need the following dependencies installed:
+
+* [Redmine 5.0.z](https://github.com/redmine/redmine)
+* [Advanced Plugin Helper 0.4.z ](https://github.com/xmera-circle/advanced_plugin_helper)
+* [Redmine Base Deface master](https://github.com/jbbarth/redmine_base_deface)
+
 ## Installation
 
 > :warning: **Don't clone the default branch**: For production you need to clone the **_master_** branch explicitly!

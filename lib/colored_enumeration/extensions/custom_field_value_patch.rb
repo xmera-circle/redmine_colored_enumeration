@@ -26,9 +26,7 @@ module ColoredEnumeration
       end
 
       module InstanceMethods
-        def cast_color(value)
-          custom_field.cast_color(value)
-        end
+        delegate :cast_color, to: :custom_field
       end
     end
   end

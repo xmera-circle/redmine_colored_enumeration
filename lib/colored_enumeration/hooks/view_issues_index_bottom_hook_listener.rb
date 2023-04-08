@@ -32,7 +32,7 @@ module ColoredEnumeration
     class ViewIssuesIndexBottomHookListener < Redmine::Hook::ViewListener
       def view_issues_index_bottom(context = {})
         controller = context[:controller]
-        return unless /Issues/.match?(controller.class.name.to_s)
+        return unless %w[IssuesController].include?(controller.class.name.to_s)
 
         query = context[:query] || []
         issues = context[:issues] || []
@@ -47,11 +47,13 @@ module ColoredEnumeration
       def render_with_javascript(issue_mapping, controller)
         return unless issue_mapping
 
+        # rubocop:disable Rails/OutputSafety
         controller.send(
           :render_to_string,
           { partial: 'hooks/enumeration_badges',
             locals: { issue_mapping: issue_mapping } }
         ).html_safe
+        # rubocop:enable Rails/OutputSafety
       end
 
       def issue_mapping(issues, query)
@@ -74,7 +76,7 @@ module ColoredEnumeration
         ids = columns.map do |col|
           col.to_s.scan(Regexp.new('cf_(\d+)'))
         end
-        ids.flatten.map(&:to_i) unless ids.flatten.blank?
+        ids.flatten.map(&:to_i) if ids.flatten.present?
       end
 
       def custom_field_values(issues, ids)

@@ -2,7 +2,7 @@
 
 # This file is part of the Plugin Redmine Colored Enumeration.
 #
-# Copyright (C) 2022 Liane Hampe <liaham@xmera.de>, xmera.
+# Copyright (C) 2022-2023 Liane Hampe <liaham@xmera.de>, xmera Solutions GmbH.
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -23,7 +23,7 @@ Deface::Override.new(
   name: 'change-custom-field-html-attributes',
   replace: "erb[loud]:contains('content_tag')",
   partial: 'issues/custom_field_html_attributes',
-  original: '',
+  original: 'bd95c86e071738eb4b96aeaf49ff35f01020b2e5',
   sequence: 10,
   namespaced: true
 )

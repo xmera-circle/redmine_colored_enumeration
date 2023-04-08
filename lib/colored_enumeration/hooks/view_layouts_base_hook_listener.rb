@@ -2,7 +2,7 @@
 
 # This file is part of the Plugin Redmine Colored Enumeration.
 #
-# Copyright (C) 2021 - 2022 Liane Hampe <liaham@xmera.de>, xmera.
+# Copyright (C) 2021-2023 Liane Hampe <liaham@xmera.de>, xmera Solutions GmbH.
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -24,7 +24,7 @@ module ColoredEnumeration
 
     class ViewLayoutsBaseHookListener < Redmine::Hook::ViewListener
       def view_layouts_base_html_head(context = {})
-        return unless /Issues/.match?(context[:controller].class.name.to_s)
+        return unless %w[IssuesController].include?(context[:controller].class.name.to_s)
 
         "\n".html_safe + stylesheet_link_tag('colored_data_fields.css', plugin: :redmine_colored_enumeration) +
           "\n".html_safe + javascript_include_tag('colored_data_fields.js', plugin: :redmine_colored_enumeration)

@@ -14,13 +14,18 @@
                 `<table class='enumeration-badge'>
                   <tbody>
                     <tr>
-                      <td style="background-color: `+ color + `;" title="` + value + ` "></td>
+                      <td style="background-color: `+ color + `;" title="` + value + `"></td>
                     </tr>
                   </tbody>
                 </table>`
               )
             }
           });
+      });
+      $("[title]").tooltip({
+        classes: {
+          "ui-tooltip": "highlight"
+        }
       });
     });
   <% end %>

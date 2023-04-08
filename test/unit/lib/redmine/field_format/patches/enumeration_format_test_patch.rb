@@ -18,19 +18,19 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
-require File.expand_path('lib/colored_enumeration', __dir__)
+require File.expand_path('../../../../../test_helper', __dir__)
+require 'redmine/field_format'
 
-Redmine::Plugin.register :redmine_colored_enumeration do
-  name 'Colored Enumeration'
-  author 'Liane Hampe'
-  description 'Background color for custom field enumeration values'
-  version '0.1.3'
-  url 'https://circle.xmera.de/projects/redmine-colored-enumeration'
-  author_url 'http://xmera.de'
+class Redmine::EnumerationFieldFormatTest
+  define_method(:test_value_from_keyword_for_multiple_custom_field_should_return_enumeration_ids) do
+    # This test cannot be done since multiple values are not supported when
+    # using Redmine Colored Enumeration plugin!
+    assert true
+  end
 
-  requires_redmine version_or_higher: '4.2.1'
-  requires_redmine_plugin :redmine_base_deface, version_or_higher: '1.6.2'
-  requires_redmine_plugin :advanced_plugin_helper, version_or_higher: '0.4.0'
+  define_method(:test_edit_tag_with_multiple_should_select_current_values) do
+    # This test cannot be done since multiple values are not supported when
+    # using Redmine Colored Enumeration plugin!
+    assert true
+  end
 end
-
-RedmineColoredEnumeration.setup

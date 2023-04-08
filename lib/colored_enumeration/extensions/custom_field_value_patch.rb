@@ -2,7 +2,7 @@
 
 # This file is part of the Plugin Redmine Colored Enumeration.
 #
-# Copyright (C) 2021 - 2022 Liane Hampe <liaham@xmera.de>, xmera.
+# Copyright (C) 2021-2023 Liane Hampe <liaham@xmera.de>, xmera Solutions GmbH.
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -26,16 +26,8 @@ module ColoredEnumeration
       end
 
       module InstanceMethods
-        def cast_color(value)
-          custom_field.cast_color(value)
-        end
+        delegate :cast_color, to: :custom_field
       end
     end
   end
-end
-
-Rails.configuration.to_prepare do
-  patch = ColoredEnumeration::Extensions::CustomFieldValuePatch
-  klass = CustomFieldValue
-  klass.include patch unless klass.included_modules.include?(patch)
 end

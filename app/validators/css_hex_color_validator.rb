@@ -2,7 +2,7 @@
 
 # This file is part of the Plugin Redmine Colored Enumeration.
 #
-# Copyright (C) 2021 - 2022 Liane Hampe <liaham@xmera.de>, xmera.
+# Copyright (C) 2021-2023 Liane Hampe <liaham@xmera.de>, xmera Solutions GmbH.
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -27,6 +27,6 @@ class CssHexColorValidator < ActiveModel::EachValidator
   def validate_each(object, attribute, value)
     return true if value.nil? || value =~ /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/i
 
-    object.errors[attribute] << (options[:message] || l(:error_invalid_css_hex_color))
+    object.errors.add(attribute, options[:message] || l(:error_invalid_css_hex_color))
   end
 end

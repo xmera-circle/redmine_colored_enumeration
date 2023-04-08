@@ -2,7 +2,7 @@
 
 # This file is part of the Plugin Redmine Colored Enumeration.
 #
-# Copyright (C) 2021 - 2022 Liane Hampe <liaham@xmera.de>, xmera.
+# Copyright (C) 2021-2023 Liane Hampe <liaham@xmera.de>, xmera Solutions GmbH.
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -31,6 +31,8 @@ module ColoredEnumeration
         #
         # @override IssuesHelper#render_half_width_custom_fields_rows
         #
+        # rubocop:disable Metrics/AbcSize
+        # rubocop:disable Metrics/MethodLength
         def render_half_width_custom_fields_rows(issue)
           values = issue.visible_custom_field_values.reject { |value| value.custom_field.full_width_layout? }
           return if values.empty?
@@ -46,9 +48,11 @@ module ColoredEnumeration
             end
           end
         end
+        # rubocop:enable Metrics/AbcSize
+        # rubocop:enable Metrics/MethodLength
 
         def row_html_args(value)
-          return { class: value.custom_field.css_classes } unless cast_color(value).present?
+          return { class: value.custom_field.css_classes } if cast_color(value).blank?
 
           { class: value.custom_field.css_classes,
             data: { color: value.cast_color(value.value) } }
@@ -60,10 +64,4 @@ module ColoredEnumeration
       end
     end
   end
-end
-
-Rails.configuration.to_prepare do
-  patch = ColoredEnumeration::Overrides::IssuesHelperPatch
-  klass = IssuesHelper
-  klass.prepend patch unless klass.included_modules.include?(patch)
 end

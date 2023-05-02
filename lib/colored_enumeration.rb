@@ -19,21 +19,21 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 # Extensions
-require_relative 'colored_enumeration/extensions/custom_field_enumeration_patch'
-require_relative 'colored_enumeration/extensions/custom_field_patch'
-require_relative 'colored_enumeration/extensions/enumeration_format_patch'
-require_relative 'colored_enumeration/extensions/issue_custom_field_patch'
-require_relative 'colored_enumeration/extensions/custom_field_value_patch'
-require_relative 'colored_enumeration/extensions/base_format_patch'
-require_relative 'colored_enumeration/extensions/query_custom_field_column_patch'
+require File.expand_path('colored_enumeration/extensions/custom_field_enumeration_patch', __dir__)
+require File.expand_path('colored_enumeration/extensions/custom_field_patch', __dir__)
+require File.expand_path('colored_enumeration/extensions/enumeration_format_patch', __dir__)
+require File.expand_path('colored_enumeration/extensions/issue_custom_field_patch', __dir__)
+require File.expand_path('colored_enumeration/extensions/custom_field_value_patch', __dir__)
+require File.expand_path('colored_enumeration/extensions/base_format_patch', __dir__)
+require File.expand_path('colored_enumeration/extensions/query_custom_field_column_patch', __dir__)
 
 # Hooks
-require_relative 'colored_enumeration/hooks/view_layouts_base_hook_listener'
-require_relative 'colored_enumeration/hooks/view_issues_index_bottom_hook_listener'
+require File.expand_path('colored_enumeration/hooks/view_layouts_base_hook_listener', __dir__)
+require File.expand_path('colored_enumeration/hooks/view_issues_index_bottom_hook_listener', __dir__)
 
 # Overrides
-require_relative 'colored_enumeration/overrides/custom_field_enumerations_controller_patch'
-require_relative 'colored_enumeration/overrides/issues_helper_patch'
+require File.expand_path('colored_enumeration/overrides/custom_field_enumerations_controller_patch', __dir__)
+require File.expand_path('colored_enumeration/overrides/issues_helper_patch', __dir__)
 
 ##
 # Initialize the plugins setup.
